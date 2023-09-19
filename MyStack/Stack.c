@@ -104,6 +104,11 @@ bool push_Stack(PSTACK ps, int val) {
 //同时pTop指向下一个结点
 bool pop_Stack(PSTACK ps, int* val) {
 
+	if (isEmpty_Stack(ps)) {
+		printf("栈为空，出栈失败！");
+		return false;
+	}
+
 	PNODE p = ps->pTop;//临时储存pTop
 	ps->pTop = p->PNext;//令pTop指向下一个结点
 
