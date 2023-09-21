@@ -1,4 +1,4 @@
-#include <stdio.h>
+﻿#include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 
@@ -27,6 +27,7 @@ bool push_Stack(PSTACK, int);
 bool pop_Stack(PSTACK, int*);
 void show_Stack(PSTACK);
 bool isEmpty_Stack(PSTACK);
+bool clear_Stack(PSTACK);
 
 int main() {
 
@@ -42,6 +43,8 @@ int main() {
 	push_Stack(&S, -45);
 	push_Stack(&S, 99);
 	push_Stack(&S, 0);
+	push_Stack(&S, 100);
+	push_Stack(&S, 3);
 	show_Stack(&S);
 
 	if (pop_Stack(&S, &temp)) {
@@ -51,6 +54,11 @@ int main() {
 
 	if (pop_Stack(&S, &temp)) {
 		printf("出栈成功，出栈结点数据为：%d\n", temp);
+	}
+	show_Stack(&S);
+
+	if (clear_Stack(&S)) {
+		printf("清空栈成功！\n");
 	}
 	show_Stack(&S);
 
@@ -127,6 +135,11 @@ bool pop_Stack(PSTACK ps, int* val) {
 //实现栈的遍历输出
 void show_Stack(PSTACK ps) {
 
+	if (isEmpty_Stack(ps)) {
+		printf("栈为空，遍历输出失败！\n");
+		return false;
+	}
+
 	int i = 1;
 	PNODE p = ps->pTop;
 	/*为了不改变原有pTop与pBottom，
@@ -151,4 +164,29 @@ bool isEmpty_Stack(PSTACK ps) {
 	else
 		return false;
 
+}
+
+//实现将栈置空，即清空每个元素，但栈不销毁
+bool clear_Stack(PSTACK ps) {
+
+	PNODE p = ps->pTop;
+	PNODE q = NULL;//定义两个指针变量做为跑标遍历栈
+	//其中一个指向待删除的结点，一个指向下一个结点
+
+	if (isEmpty_Stack(ps)) {
+		printf("栈为空，置空失败！\n");
+		return false;
+	}
+
+	while (p != ps->pBottom) {
+		q = p->PNext;
+		free(p);//释放p指向的结点的空间
+		p = q;
+	}
+	ps->pTop = ps->pBottom;//注意！！
+
+	p = NULL;
+	q = NULL;
+
+	return true;
 }
