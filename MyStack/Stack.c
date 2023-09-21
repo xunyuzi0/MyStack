@@ -33,7 +33,11 @@ int main() {
 	int temp = 0;//临时储存出栈结点数据
 
 	STACK S;
-	init_Stack(&S);
+	if (init_Stack(&S)) {
+		printf("初始化栈成功！\n");
+	}
+	show_Stack(&S);
+
 	push_Stack(&S, 3);
 	push_Stack(&S, -45);
 	push_Stack(&S, 99);
