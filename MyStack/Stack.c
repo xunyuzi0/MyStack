@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-//本程序完成了栈的数据结构和部分算法
+//！！基于链式存储结构的栈！！
+//本程序完成了链式栈的数据结构和部分算法
 
 //定义每一个结点的结构，和链表结构相同
 typedef struct Node {
