@@ -159,11 +159,7 @@ void show_Stack(PSTACK ps) {
 //实现对栈的判空，空返回true，否则返回false
 bool isEmpty_Stack(PSTACK ps) {
 
-	if (ps->pTop == ps->pBottom) {
-		return true;
-	}
-	else
-		return false;
+	return (ps->pTop == ps->pBottom);
 
 }
 
